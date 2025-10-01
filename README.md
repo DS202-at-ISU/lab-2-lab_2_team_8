@@ -19,7 +19,8 @@ you are done with your submission.
 
 ``` r
 library(classdata)
-
+ data(ames)
+ 
  summary(ames)
 ```
 
@@ -103,36 +104,45 @@ library(classdata)
 
     ## [1] NA  "Y"
 
-1.  What variables: Parcel ID, Address, Style, Occupancy, Sale Date,
-    Sale Price, Multi Sale, YearBuilt, Acres, TotalLivingArea (sf),
-    Bedrooms, FinshedBsmtArea (sf), LotArea(sf), AC, FirePlace,
-    Neighborhood. The variables are of type character, numerical, and
-    date. What do these variables mean: Sale date is the date of the
-    sale of the property, expected data range 2017-2022. Sale price is
-    the amount of money in American dollars that the property was sold
-    for, expected range 0, 20 million. Multi Sale shows if the sale
-    consisted of more than one property, Y showing that it was, NA
-    otherwise, expected possible values, NA and Y. YearBuilt is the year
-    that the house or building was built, expected range, 0-2022. Parcel
-    ID: A unique ID used to identify a property to authorities, this
-    could be any range of unique values. Address: This represents the
-    address of the property. This is expected to not be empty, but it
-    could be any address. Style: This marks the style of the house /
-    property, the range for this dataset is: 1 Story Frame, 2 Story
-    Frame, 1 1/2 Story Frame, Split Level Frame, Split Foyer Frame,
-    (Other), or NA. Occupancy: This marks what type of occupancy it is,
-    the ranges we expect for this dataset are: Condominium,
-    Single-Family / Owner Occupied, Townhouse, Two-Family Conversion,
-    Two-Family Duplex, or NA. Acres: Represents the size of the lot on
-    which the residence is located. Values range from 0 to 12.
-    TotalLivingArea: Indicates the total interior living space of the
-    residence. Values range from 0 to 6,000 square feet. Bedrooms: The
-    number of bedrooms in the residence. This ranges from 0 to 10, with
-    some missing values. FinishedBasementArea: Refers to the finished
-    area of the basement in square feet. Values range from 10 to 6,494
-    square feet, with some missing values.
+\<\<\<\<\<\<\< HEAD 1. What variables: Parcel ID, Address, Style,
+Occupancy, Sale Date, Sale Price, Multi Sale, YearBuilt, Acres,
+TotalLivingArea (sf), Bedrooms, FinshedBsmtArea (sf), LotArea(sf), AC,
+FirePlace, Neighborhood. The variables are of type character, numerical,
+and date.
 
-## Step 2.
+======= 1. What variables: Parcel ID, Address, Style, Occupancy, Sale
+Date, Sale Price, Multi Sale, YearBuilt, Acres, TotalLivingArea (sf),
+Bedrooms, FinshedBsmtArea (sf), LotArea(sf), AC, FirePlace,
+Neighborhood. The variables are of type character, numerical, and date.
+What do these variables mean: Sale date is the date of the sale of the
+property, expected data range 2017-2022. Sale price is the amount of
+money in American dollars that the property was sold for, expected range
+0, 20 million. Multi Sale shows if the sale consisted of more than one
+property, Y showing that it was, NA otherwise, expected possible values,
+NA and Y. YearBuilt is the year that the house or building was built,
+expected range, 0-2022. Parcel ID: A unique ID used to identify a
+property to authorities, this could be any range of unique values.
+Address: This represents the address of the property. This is expected
+to not be empty, but it could be any address. Style: This marks the
+style of the house / property, the range for this dataset is: 1 Story
+Frame, 2 Story Frame, 1 1/2 Story Frame, Split Level Frame, Split Foyer
+Frame, (Other), or NA. Occupancy: This marks what type of occupancy it
+is, the ranges we expect for this dataset are: Condominium,
+Single-Family / Owner Occupied, Townhouse, Two-Family Conversion,
+Two-Family Duplex, or NA. Acres: Represents the size of the lot on which
+the residence is located. Values range from 0 to 12. TotalLivingArea:
+Indicates the total interior living space of the residence. Values range
+from 0 to 6,000 square feet. Bedrooms: The number of bedrooms in the
+residence. This ranges from 0 to 10, with some missing values.
+FinishedBasementArea: Refers to the finished area of the basement in
+square feet. Values range from 10 to 6,494 square feet, with some
+missing values. LotArea(sf): It is a Square feet area of a house for a
+particular house sale home. AC: Fireplace: Neibhorhood:
 
-The main variable for this report is `Sale Price`, we will be focusing
-on exploring relations between it and other variables in the dataset.
+\<\<\<\<\<\<\< HEAD \>\>\>\>\>\>\>
+30755a2c71c5594171329d4d425fcab8649ae511
+
+======= \## Step 2. The main variable for this report is `Sale Price`,
+we will be focusing on exploring relations between it and other
+variables in the dataset. \>\>\>\>\>\>\>
+7bfe3baf42bee0ed3bb009e83e8d31af7580c0a4
