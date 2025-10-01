@@ -50,6 +50,39 @@ Neibhorhood: It says in which area is it located. Their will not range for that 
 ## Step 2.
 The main variable for this report is `Sale Price`, we will be focusing on exploring relations between it and other variables in the dataset.
 
+## Step 3
+
+Range of Sales Price:
+
+```{r}
+min(ames$`Sale Price`)
+max(ames$`Sale Price`)
+
+
+range(ames$`Sale Price`)
+
+
+diff(range(ames$`Sale Price`))
+```
+
+The range of home sale prices in the Ames dataset spans from the 0 sale price to the 20500000, showing the spread of values across the housing market.
  
+```{r}
+library(tidyverse)
+
+ggplot(ames, aes(x = `Sale Price`)) +
+  geom_bar(fill = "steelblue", color = "Black") +
+  labs(
+    title = "Distribution of Sale Prices",
+    x = "Sale Price",
+    y = "Count"
+  )
+```
+ 
+ 
+ The histogram of Sale Price shows a right-skewed distribution where most homes sell at lower to mid-range prices, but a few extremely high-priced outliers in the millions stretch the scale and make the main pattern harder to see.
+ 
+ 
+## Step 4
  
  

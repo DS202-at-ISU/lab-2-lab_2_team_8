@@ -147,3 +147,69 @@ area is it located. Their will not range for that too.
 ======= \## Step 2. The main variable for this report is `Sale Price`,
 we will be focusing on exploring relations between it and other
 variables in the dataset.
+
+## Step 3
+
+Range of Sales Price:
+
+``` r
+min(ames$`Sale Price`)
+```
+
+    ## [1] 0
+
+``` r
+max(ames$`Sale Price`)
+```
+
+    ## [1] 20500000
+
+``` r
+range(ames$`Sale Price`)
+```
+
+    ## [1]        0 20500000
+
+``` r
+diff(range(ames$`Sale Price`))
+```
+
+    ## [1] 20500000
+
+The range of home sale prices in the Ames dataset spans from the 0 sale
+price to the 20500000, showing the spread of values across the housing
+market.
+
+``` r
+library(tidyverse)
+```
+
+    ## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+    ## ✔ dplyr     1.1.4     ✔ readr     2.1.5
+    ## ✔ forcats   1.0.1     ✔ stringr   1.5.1
+    ## ✔ ggplot2   3.5.2     ✔ tibble    3.3.0
+    ## ✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+    ## ✔ purrr     1.1.0     
+    ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+    ## ✖ dplyr::filter() masks stats::filter()
+    ## ✖ dplyr::lag()    masks stats::lag()
+    ## ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+
+``` r
+ggplot(ames, aes(x = `Sale Price`)) +
+  geom_bar(fill = "steelblue", color = "Black") +
+  labs(
+    title = "Distribution of Sale Prices",
+    x = "Sale Price",
+    y = "Count"
+  )
+```
+
+![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+
+The histogram of Sale Price shows a right-skewed distribution where most
+homes sell at lower to mid-range prices, but a few extremely high-priced
+outliers in the millions stretch the scale and make the main pattern
+harder to see.
+
+## Step 4
