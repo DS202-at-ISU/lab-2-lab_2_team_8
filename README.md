@@ -113,4 +113,14 @@ library(classdata)
     for, expected range 0, 20 million. Multi Sale shows if the sale
     consisted of more than one property, Y showing that it was, NA
     otherwise, expected possible values, NA and Y. YearBuilt is the year
-    that the house or building was built, expected range, 0-2022.
+    that the house or building was built, expected range, 0-2022. Parcel
+    ID: A unique ID used to identify a property to authorities, this
+    could be any range of unique values. Address: This represents the
+    address of the property. This is expected to not be empty, but it
+    could be any address. Style: This marks the style of the house /
+    property, the range for this dataset is: 1 Story Frame, 2 Story
+    Frame, 1 1/2 Story Frame, Split Level Frame, Split Foyer Frame,
+    (Other), or NA. Occupancy: This marks what type of occupancy it is,
+    the ranges we expect for this dataset are: Condominium,
+    Single-Family / Owner Occupied, Townhouse, Two-Family Conversion,
+    Two-Family Duplex, or NA.
