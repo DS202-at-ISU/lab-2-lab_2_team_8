@@ -20,10 +20,13 @@ Submit a link to your repository on Canvas (only one submission per team) to sig
 
 ```{r, include=TRUE}
 library(classdata)
-
+ data(ames)
+ 
  summary(ames)
 ```
  1. What variables: Parcel ID, Address, Style, Occupancy, Sale Date, Sale Price, Multi Sale, YearBuilt, Acres, TotalLivingArea (sf), Bedrooms, FinshedBsmtArea (sf), LotArea(sf), AC, FirePlace, Neighborhood. The variables are of type character, numerical, and date.
+ 
+ LotArea(sf): It is a Square feet area of a house for a particular house sale home.
  
  
  
