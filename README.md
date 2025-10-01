@@ -131,4 +131,8 @@ library(classdata)
     some missing values. FinishedBasementArea: Refers to the finished
     area of the basement in square feet. Values range from 10 to 6,494
     square feet, with some missing values.
-    
+
+## Step 2.
+
+The main variable for this report is `Sale Price`, we will be focusing
+on exploring relations between it and other variables in the dataset.
