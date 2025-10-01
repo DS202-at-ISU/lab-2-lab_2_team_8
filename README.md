@@ -139,10 +139,10 @@ square feet. Values range from 10 to 6,494 square feet, with some
 missing values. LotArea(sf): It is a Square feet area of a house for a
 particular house sale home.it is measured by Square feet and the range
 will be from 1000 sf. AC: It says whether a house has AC or not. There
-will be no range for that. Fireplace: It will say that whether they has
-a fireplace or not in a house. I think their will no range because it is
-yes or no thing. Neibhorhood: It says in which area is it located. Their
-will not range for that too.
+will be no range because it is yes or no thing. Fireplace: It will say
+that whether they has a fireplace or not in a house. I think their will
+no range because it is yes or no thing. Neibhorhood: It says in which
+area is it located. Their will not range for that too.
 
 ======= \## Step 2. The main variable for this report is `Sale Price`,
 we will be focusing on exploring relations between it and other
