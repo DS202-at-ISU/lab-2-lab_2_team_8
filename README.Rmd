@@ -32,7 +32,10 @@ Parcel ID: A unique ID used to identify a property to authorities, this could be
 Address: This represents the address of the property. This is expected to not be empty, but it could be any address.
 Style: This marks the style of the house / property, the range for this dataset is: 1 Story Frame, 2 Story Frame, 1 1/2 Story Frame, Split Level Frame, Split Foyer Frame, (Other), or NA.
 Occupancy: This marks what type of occupancy it is, the ranges we expect for this dataset are: Condominium, Single-Family / Owner Occupied, Townhouse, Two-Family Conversion, Two-Family Duplex, or NA.
-
+Acres: Represents the size of the lot on which the residence is located. Values range from 0 to 12.
+TotalLivingArea: Indicates the total interior living space of the residence. Values range from 0 to 6,000 square feet.
+Bedrooms: The number of bedrooms in the residence. This ranges from 0 to 10, with some missing values.
+FinishedBasementArea: Refers to the finished area of the basement in square feet. Values range from 10 to 6,494 square feet, with some missing values.
  
  
  

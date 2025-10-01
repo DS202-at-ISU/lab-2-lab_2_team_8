@@ -124,3 +124,4 @@ library(classdata)
     the ranges we expect for this dataset are: Condominium,
     Single-Family / Owner Occupied, Townhouse, Two-Family Conversion,
     Two-Family Duplex, or NA.
+    
