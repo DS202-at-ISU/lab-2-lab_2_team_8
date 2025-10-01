@@ -17,3 +17,15 @@ Include your answers in this document (Rmd file). Make sure that it knits proper
 
 All submissions to the github repo will be automatically uploaded for grading once the due date is passed.
 Submit a link to your repository on Canvas (only one submission per team) to signal to the instructors that you are done with your submission.
+
+```{r, include=TRUE}
+library(classdata)
+
+ summary(ames)
+```
+ 1. What variables: Parcel ID, Address, Style, Occupancy, Sale Date, Sale Price, Multi Sale, YearBuilt, Acres, TotalLivingArea (sf), Bedrooms, FinshedBsmtArea (sf), LotArea(sf), AC, FirePlace, Neighborhood. The variables are of type character, numerical, and date.
+ 
+ 
+ 
+ 
+ 
