@@ -22,9 +22,12 @@ Submit a link to your repository on Canvas (only one submission per team) to sig
 library(classdata)
 
  summary(ames)
-```
- 1. What variables: Parcel ID, Address, Style, Occupancy, Sale Date, Sale Price, Multi Sale, YearBuilt, Acres, TotalLivingArea (sf), Bedrooms, FinshedBsmtArea (sf), LotArea(sf), AC, FirePlace, Neighborhood. The variables are of type character, numerical, and date.
  
+ head(ames)
+ 
+ unique(ames$`Multi Sale`)
+```
+ 1. What variables: Parcel ID, Address, Style, Occupancy, Sale Date, Sale Price, Multi Sale, YearBuilt, Acres, TotalLivingArea (sf), Bedrooms, FinshedBsmtArea (sf), LotArea(sf), AC, FirePlace, Neighborhood. The variables are of type character, numerical, and date. What do these variables mean: Sale date is the date of the sale of the property, expected data range 2017-2022. Sale price is the amount of money in American dollars that the property was sold for, expected range 0, 20 million. Multi Sale shows if the sale consisted of more than one property, Y showing that it was, NA otherwise, expected possible values, NA and Y. YearBuilt is the year that the house or building was built, expected range, 0-2022.
  
  
  
