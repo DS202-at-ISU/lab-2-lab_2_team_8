@@ -104,20 +104,24 @@ library(classdata)
 
     ## [1] NA  "Y"
 
+<<<<<<< HEAD
 \<\<\<\<\<\<\< HEAD \## Step 1. 1. As a team, we found the following.
 What variables: Parcel ID, Address, Style, Occupancy, Sale Date, Sale
 Price, Multi Sale, YearBuilt, Acres, TotalLivingArea (sf), Bedrooms,
 FinshedBsmtArea (sf), LotArea(sf), AC, FirePlace, Neighborhood. The
 variables are of type character, numerical, and date.
+=======
+## Step 1
+>>>>>>> 98803e4 (My part 4.)
 
-======= 1. What variables: Parcel ID, Address, Style, Occupancy, Sale
-Date, Sale Price, Multi Sale, YearBuilt, Acres, TotalLivingArea (sf),
-Bedrooms, FinshedBsmtArea (sf), LotArea(sf), AC, FirePlace,
-Neighborhood. The variables are of type character, numerical, and date.
-What do these variables mean: Sale date is the date of the sale of the
-property, expected data range 2017-2022. Sale price is the amount of
-money in American dollars that the property was sold for, expected range
-0, 20 million. Multi Sale shows if the sale consisted of more than one
+What variables: Parcel ID, Address, Style, Occupancy, Sale Date, Sale
+Price, Multi Sale, YearBuilt, Acres, TotalLivingArea (sf), Bedrooms,
+FinshedBsmtArea (sf), LotArea(sf), AC, FirePlace, Neighborhood. The
+variables are of type character, numerical, and date. What do these
+variables mean: Sale date is the date of the sale of the property,
+expected data range 2017-2022. Sale price is the amount of money in
+American dollars that the property was sold for, expected range 0, 20
+million. Multi Sale shows if the sale consisted of more than one
 property, Y showing that it was, NA otherwise, expected possible values,
 NA and Y. YearBuilt is the year that the house or building was built,
 expected range, 0-2022. Parcel ID: A unique ID used to identify a
@@ -146,9 +150,14 @@ area is it located. Their will not range for that too.
 
 ## Step 2.
 
+<<<<<<< HEAD
 As a team, we found the following. The main variable for this report is
 `Sale Price`, we will be focusing on exploring relations between it and
 other variables in the dataset.
+=======
+The main variable for this report is `Sale Price`, we will be focusing
+on exploring relations between it and other variables in the dataset.
+>>>>>>> 98803e4 (My part 4.)
 
 ## Step 3
 
@@ -188,8 +197,8 @@ library(tidyverse)
 
     ## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
     ## ✔ dplyr     1.1.4     ✔ readr     2.1.5
-    ## ✔ forcats   1.0.1     ✔ stringr   1.5.1
-    ## ✔ ggplot2   3.5.2     ✔ tibble    3.3.0
+    ## ✔ forcats   1.0.1     ✔ stringr   1.5.2
+    ## ✔ ggplot2   4.0.0     ✔ tibble    3.3.0
     ## ✔ lubridate 1.9.4     ✔ tidyr     1.3.1
     ## ✔ purrr     1.1.0     
     ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
@@ -216,6 +225,7 @@ harder to see.
 
 ## Step 4
 
+<<<<<<< HEAD
 Norah’s work: One variable that could be related to the main variable,
 Sale Price, is Year Built. The range of this variable is 0-2022. It’s
 distribution is left skewed, roughly centered around the late 1900s,
@@ -344,3 +354,89 @@ their sale prices vary widely. Houses on larger lots (2–6 acres) don’t
 always have higher prices, which is a bit unusual. This suggests that
 lot size alone doesn’t strongly determine the sale price, and other
 factors like location or house features play a big role.
+=======
+#### Harrison’s work
+
+I am going to explore the `Occupancy` variable. This is a categorical
+variable, as there are only a certain number of fixed discrete variables
+it can be.
+
+``` r
+library(ggplot2)
+library(dplyr)
+clean <- ames %>%
+  filter(`Sale Price` > 0)
+ggplot(clean, aes(x = Occupancy, y = `Sale Price`, fill = Occupancy)) +
+  geom_boxplot() + 
+  labs(title = "Distribution of Sale Price by Occupancy Type",
+       x = "Occupancy",
+       y = "Sale Price") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+
+``` r
+clean <- ames %>%
+  filter(`Sale Price` < 1e7)
+ggplot(clean, aes(x = Occupancy, y = `Sale Price`, fill = Occupancy)) +
+  geom_boxplot() + 
+  labs(title = "Distribution of Sale Price by Occupancy Type",
+       x = "Occupancy",
+       y = "Sale Price") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+![](README_files/figure-gfm/unnamed-chunk-4-2.png)<!-- -->
+
+``` r
+range(ames$`Sale Price`, na.rm = TRUE)
+```
+
+    ## [1]        0 20500000
+
+We see here that there are a few oddites:
+
+1.  There are a lot of `Sale Price` that are equal to 0.
+
+2.  There is an outlier at 20.5 million dollars on a condo.
+
+Even in the filtered out plot, there is still pretty major outliers in
+the NA category. These are most likely to do with plots of land to be
+developed, as some of these would be much more expensive than regular
+housing.
+
+We do still see a good amount of outliers in Condos and Single-Family as
+well.
+
+``` r
+library(dplyr)
+
+outlier <- ames %>%
+  filter(`Sale Price` == max(`Sale Price`, na.rm = TRUE)) %>%
+  select(`Parcel ID`, Address, Occupancy, `Sale Price`)
+
+outlier
+```
+
+    ## # A tibble: 188 × 4
+    ##    `Parcel ID` Address                            Occupancy   `Sale Price`
+    ##    <chr>       <chr>                              <fct>              <dbl>
+    ##  1 0914276210  416 BILLY SUNDAY RD UNIT 101, AMES Condominium     20500000
+    ##  2 0914276215  416 BILLY SUNDAY RD UNIT 102, AMES Condominium     20500000
+    ##  3 0914276220  416 BILLY SUNDAY RD UNIT 103, AMES Condominium     20500000
+    ##  4 0914276225  416 BILLY SUNDAY RD UNIT 104, AMES Condominium     20500000
+    ##  5 0914276230  416 BILLY SUNDAY RD UNIT 105, AMES Condominium     20500000
+    ##  6 0914276235  416 BILLY SUNDAY RD UNIT 106, AMES Condominium     20500000
+    ##  7 0914276240  416 BILLY SUNDAY RD UNIT 107, AMES Condominium     20500000
+    ##  8 0914276245  416 BILLY SUNDAY RD UNIT 108, AMES Condominium     20500000
+    ##  9 0914276250  416 BILLY SUNDAY RD UNIT 109, AMES Condominium     20500000
+    ## 10 0914276255  416 BILLY SUNDAY RD UNIT 110, AMES Condominium     20500000
+    ## # ℹ 178 more rows
+
+Here we see that the 416 BILLY SUNDAY RD Condos are ALL listed for the
+MAX price, this is probably some sort of error, and should most likely
+be filtered out.
+>>>>>>> 98803e4 (My part 4.)
