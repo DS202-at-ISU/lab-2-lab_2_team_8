@@ -104,11 +104,11 @@ library(classdata)
 
     ## [1] NA  "Y"
 
-\<\<\<\<\<\<\< HEAD \## Step 1. 1. What variables: Parcel ID, Address,
-Style, Occupancy, Sale Date, Sale Price, Multi Sale, YearBuilt, Acres,
-TotalLivingArea (sf), Bedrooms, FinshedBsmtArea (sf), LotArea(sf), AC,
-FirePlace, Neighborhood. The variables are of type character, numerical,
-and date.
+\<\<\<\<\<\<\< HEAD \## Step 1. 1. As a team, we found the following.
+What variables: Parcel ID, Address, Style, Occupancy, Sale Date, Sale
+Price, Multi Sale, YearBuilt, Acres, TotalLivingArea (sf), Bedrooms,
+FinshedBsmtArea (sf), LotArea(sf), AC, FirePlace, Neighborhood. The
+variables are of type character, numerical, and date.
 
 ======= 1. What variables: Parcel ID, Address, Style, Occupancy, Sale
 Date, Sale Price, Multi Sale, YearBuilt, Acres, TotalLivingArea (sf),
@@ -146,12 +146,13 @@ area is it located. Their will not range for that too.
 
 ## Step 2.
 
-The main variable for this report is `Sale Price`, we will be focusing
-on exploring relations between it and other variables in the dataset.
+As a team, we found the following. The main variable for this report is
+`Sale Price`, we will be focusing on exploring relations between it and
+other variables in the dataset.
 
 ## Step 3
 
-Range of Sales Price:
+As a team, we found the following. Range of Sales Price:
 
 ``` r
 min(ames$`Sale Price`)
@@ -216,7 +217,25 @@ harder to see.
 ## Step 4
 
 Norah’s work: One variable that could be related to the main variable,
-Sale Price, is Year Built. The range of this variable is 0-2022.
+Sale Price, is Year Built. The range of this variable is 0-2022. It’s
+distribution is left skewed, roughly centered around the late 1900s,
+approximately the 1990s.
+
+``` r
+summary(ames$YearBuilt)
+```
+
+    ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+    ##       0    1956    1978    1976    2002    2022     447
+
+``` r
+ggplot(ames, aes(x=YearBuilt)) + geom_histogram(binwidth = 10)
+```
+
+    ## Warning: Removed 447 rows containing non-finite outside the scale range
+    ## (`stat_bin()`).
+
+![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
 ``` r
 ggplot(ames, aes(y = `Sale Price`, x = `YearBuilt`)) +
@@ -231,25 +250,31 @@ ggplot(ames, aes(y = `Sale Price`, x = `YearBuilt`)) +
     ## Warning: Removed 447 rows containing missing values or values outside the scale range
     ## (`geom_point()`).
 
-![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-4-2.png)<!-- -->
 
 ``` r
 #This is clearly too compressed, we will remove the year values of 0.
 # and also sale prices over 1 million since there are only a few and we need to see the overall pattern.
-ames %>%
-  filter(YearBuilt != 0, `Sale Price` <=1000000) %>%
+
+ames %>% filter(YearBuilt !=0, `Sale Price` <= 1000000) %>%
   ggplot(aes(y = `Sale Price`, x = YearBuilt)) +
-  geom_point(color = "Black", fill = "steelblue", size = 2, alpha = 0.5) +
+  geom_point(fill = "steelblue", color = "Black") +
   labs(
-    title = "Distribution of Sale Prices vs. Year Built (excluding YearBuilt = 0)",
-    x = "Year Built",
-    y = "Sale Price"
-  ) +
-  theme_minimal()
+    title = "Distribution of Sale Prices",
+    x = "Sale Price",
+    y = "Year Built"
+  )
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-4-2.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-4-3.png)<!-- --> This plot
+shows a weak positive correlation between year built and sale price.
+This variable does not seem to explain any of the oddities from part 3.
+The low value outlier appears to be a mistake, with both values being 0
+(the house was definitely not built in year 0.) The high value outliers
+are only high in the year built value, so these are not the same as the
+high outliers seen in the histogram of the distribution of sale prices.
+The high values in the sale price histogram are likely the values
+referred to in the warning where it says that some values were excluded
+for being outside of the scaling range.
 
-``` r
-#This plot shows a general positive correlation between year built and sale price.
-```
+End of Norah’s work.
