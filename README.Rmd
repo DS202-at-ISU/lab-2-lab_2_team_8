@@ -29,6 +29,7 @@ library(classdata)
  unique(ames$`Multi Sale`)
 ```
 <<<<<<< HEAD
+## Step 1.
  1. What variables: Parcel ID, Address, Style, Occupancy, Sale Date, Sale Price, Multi Sale, YearBuilt, Acres, TotalLivingArea (sf), Bedrooms, FinshedBsmtArea (sf), LotArea(sf), AC, FirePlace, Neighborhood. The variables are of type character, numerical, and date.
  
 =======
@@ -46,7 +47,7 @@ AC: It says whether a house has AC or not. There will be no range because it is 
 Fireplace: It will say that whether they has a fireplace or not in a house. I think their will no range because it is yes or no thing.
 Neibhorhood: It says in which area is it located. Their will not range for that too.
  
-=======
+
 ## Step 2.
 The main variable for this report is `Sale Price`, we will be focusing on exploring relations between it and other variables in the dataset.
 
@@ -85,4 +86,28 @@ ggplot(ames, aes(x = `Sale Price`)) +
  
 ## Step 4
  
- 
+ Norah's work: 
+ One variable that could be related to the main variable, Sale Price, is Year Built. The range of this variable is 0-2022. 
+```{r}
+
+ggplot(ames, aes(y = `Sale Price`, x = `YearBuilt`)) +
+  geom_point(fill = "steelblue", color = "Black") +
+  labs(
+    title = "Distribution of Sale Prices",
+    x = "Sale Price",
+    y = "Year Built"
+  )
+#This is clearly too compressed, we will remove the year values of 0.
+# and also sale prices over 1 million since there are only a few and we need to see the overall pattern.
+ames %>%
+  filter(YearBuilt != 0, `Sale Price` <=1000000) %>%
+  ggplot(aes(y = `Sale Price`, x = YearBuilt)) +
+  geom_point(color = "Black", fill = "steelblue", size = 2, alpha = 0.5) +
+  labs(
+    title = "Distribution of Sale Prices vs. Year Built (excluding YearBuilt = 0)",
+    x = "Year Built",
+    y = "Sale Price"
+  ) +
+  theme_minimal()
+#This plot shows a general positive correlation between year built and sale price.
+```

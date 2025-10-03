@@ -104,8 +104,8 @@ library(classdata)
 
     ## [1] NA  "Y"
 
-\<\<\<\<\<\<\< HEAD 1. What variables: Parcel ID, Address, Style,
-Occupancy, Sale Date, Sale Price, Multi Sale, YearBuilt, Acres,
+\<\<\<\<\<\<\< HEAD \## Step 1. 1. What variables: Parcel ID, Address,
+Style, Occupancy, Sale Date, Sale Price, Multi Sale, YearBuilt, Acres,
 TotalLivingArea (sf), Bedrooms, FinshedBsmtArea (sf), LotArea(sf), AC,
 FirePlace, Neighborhood. The variables are of type character, numerical,
 and date.
@@ -144,9 +144,10 @@ that whether they has a fireplace or not in a house. I think their will
 no range because it is yes or no thing. Neibhorhood: It says in which
 area is it located. Their will not range for that too.
 
-======= \## Step 2. The main variable for this report is `Sale Price`,
-we will be focusing on exploring relations between it and other
-variables in the dataset.
+## Step 2.
+
+The main variable for this report is `Sale Price`, we will be focusing
+on exploring relations between it and other variables in the dataset.
 
 ## Step 3
 
@@ -186,10 +187,10 @@ library(tidyverse)
 
     ## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
     ## ✔ dplyr     1.1.4     ✔ readr     2.1.5
-    ## ✔ forcats   1.0.1     ✔ stringr   1.5.1
-    ## ✔ ggplot2   3.5.2     ✔ tibble    3.3.0
+    ## ✔ forcats   1.0.0     ✔ stringr   1.5.1
+    ## ✔ ggplot2   3.5.1     ✔ tibble    3.2.1
     ## ✔ lubridate 1.9.4     ✔ tidyr     1.3.1
-    ## ✔ purrr     1.1.0     
+    ## ✔ purrr     1.0.4     
     ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
     ## ✖ dplyr::filter() masks stats::filter()
     ## ✖ dplyr::lag()    masks stats::lag()
@@ -213,3 +214,42 @@ outliers in the millions stretch the scale and make the main pattern
 harder to see.
 
 ## Step 4
+
+Norah’s work: One variable that could be related to the main variable,
+Sale Price, is Year Built. The range of this variable is 0-2022.
+
+``` r
+ggplot(ames, aes(y = `Sale Price`, x = `YearBuilt`)) +
+  geom_point(fill = "steelblue", color = "Black") +
+  labs(
+    title = "Distribution of Sale Prices",
+    x = "Sale Price",
+    y = "Year Built"
+  )
+```
+
+    ## Warning: Removed 447 rows containing missing values or values outside the scale range
+    ## (`geom_point()`).
+
+![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+
+``` r
+#This is clearly too compressed, we will remove the year values of 0.
+# and also sale prices over 1 million since there are only a few and we need to see the overall pattern.
+ames %>%
+  filter(YearBuilt != 0, `Sale Price` <=1000000) %>%
+  ggplot(aes(y = `Sale Price`, x = YearBuilt)) +
+  geom_point(color = "Black", fill = "steelblue", size = 2, alpha = 0.5) +
+  labs(
+    title = "Distribution of Sale Prices vs. Year Built (excluding YearBuilt = 0)",
+    x = "Year Built",
+    y = "Sale Price"
+  ) +
+  theme_minimal()
+```
+
+![](README_files/figure-gfm/unnamed-chunk-4-2.png)<!-- -->
+
+``` r
+#This plot shows a general positive correlation between year built and sale price.
+```
