@@ -115,3 +115,55 @@ ames %>% filter(YearBuilt !=0, `Sale Price` <= 1000000) %>%
 This plot shows a weak positive correlation between year built and sale price. This variable does not seem to explain any of the oddities from part 3. The low value outlier appears to be a mistake, with both values being 0 (the house was definitely not built in year 0.) The high value outliers are only high in the year built value, so these are not the same as the high outliers seen in the histogram of the distribution of sale prices. The high values in the sale price histogram are likely the values referred to in the warning where it says that some values were excluded for being outside of the scaling range. 
 
 End of Norah's work.
+
+
+Prudvik's work:
+
+one variable that we will compare main variable is acers. area of the land with its sales price.
+```{r}
+range(ames$Acres, na.rm = TRUE)
+```
+
+The range of lot size in acres spans from 0.000 to 12.012, showing that most properties are very small while a few extend to much larger acreages.
+
+
+
+
+```{r}
+
+library(tidyverse)
+
+ggplot(ames, aes(x = Acres)) +
+  geom_histogram(binwidth = 0.1, fill = "steelblue", color = "black") +
+  labs(title = "Distribution of Lot Size (Acres)",
+       x = "Lot Size (Acres)", y = "Count")
+
+
+
+```
+The distribution of lot size is highly right-skewed, with the majority of homes built on very small lots under 1 acre. A few properties extend up to 12 acres, but these are rare outliers that stretch the scale and make the main cluster of smaller lots appear compressed. This suggests that while most homes in the dataset are located on relatively compact residential lots, a handful of unusually large properties stand out as exceptions.
+
+Since extreme outliers in both Sale Price and lot size (Acres) were distorting the analysis, we applied filters to remove homes priced above $1,000,000 and properties larger than 7 acres. This allowed us to focus on the majority of typical houses in the dataset and better observe the true relationship between Sale Price and lot size without the influence of unusual extreme cases
+
+```{r}
+library(ggplot2)
+
+# Filter sales price under 1 million
+filtered_data <- subset(ames, `Sale Price` <= 1000000 & `Acres`< 7)
+
+# Scatterplot of Sale Price vs Acres
+ggplot(filtered_data, aes(x = Acres, y = `Sale Price`)) +
+  geom_point(alpha = 0.6, color = "steelblue") +
+  labs(
+    title = "Scatterplot of Sale Price vs. Acres Filtered",
+    x = "Acres",
+    y = "Sale Price"
+  )
+
+```
+The scatterplot shows that most houses are on smaller lots under 1 acre, and their sale prices vary widely. Houses on larger lots (2–6 acres) don’t always have higher prices, which is a bit unusual. This suggests that lot size alone doesn’t strongly determine the sale price, and other factors like location or house features play a big role.
+
+
+
+
+

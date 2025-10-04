@@ -188,10 +188,10 @@ library(tidyverse)
 
     ## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
     ## ✔ dplyr     1.1.4     ✔ readr     2.1.5
-    ## ✔ forcats   1.0.0     ✔ stringr   1.5.1
-    ## ✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+    ## ✔ forcats   1.0.1     ✔ stringr   1.5.1
+    ## ✔ ggplot2   3.5.2     ✔ tibble    3.3.0
     ## ✔ lubridate 1.9.4     ✔ tidyr     1.3.1
-    ## ✔ purrr     1.0.4     
+    ## ✔ purrr     1.1.0     
     ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
     ## ✖ dplyr::filter() masks stats::filter()
     ## ✖ dplyr::lag()    masks stats::lag()
@@ -278,3 +278,69 @@ referred to in the warning where it says that some values were excluded
 for being outside of the scaling range.
 
 End of Norah’s work.
+
+Prudvik’s work:
+
+one variable that we will compare main variable is acers. area of the
+land with its sales price.
+
+``` r
+range(ames$Acres, na.rm = TRUE)
+```
+
+    ## [1]  0.000 12.012
+
+The range of lot size in acres spans from 0.000 to 12.012, showing that
+most properties are very small while a few extend to much larger
+acreages.
+
+``` r
+library(tidyverse)
+
+ggplot(ames, aes(x = Acres)) +
+  geom_histogram(binwidth = 0.1, fill = "steelblue", color = "black") +
+  labs(title = "Distribution of Lot Size (Acres)",
+       x = "Lot Size (Acres)", y = "Count")
+```
+
+    ## Warning: Removed 89 rows containing non-finite outside the scale range
+    ## (`stat_bin()`).
+
+![](README_files/figure-gfm/unnamed-chunk-6-1.png)<!-- --> The
+distribution of lot size is highly right-skewed, with the majority of
+homes built on very small lots under 1 acre. A few properties extend up
+to 12 acres, but these are rare outliers that stretch the scale and make
+the main cluster of smaller lots appear compressed. This suggests that
+while most homes in the dataset are located on relatively compact
+residential lots, a handful of unusually large properties stand out as
+exceptions.
+
+Since extreme outliers in both Sale Price and lot size (Acres) were
+distorting the analysis, we applied filters to remove homes priced above
+\$1,000,000 and properties larger than 7 acres. This allowed us to focus
+on the majority of typical houses in the dataset and better observe the
+true relationship between Sale Price and lot size without the influence
+of unusual extreme cases
+
+``` r
+library(ggplot2)
+
+# Filter sales price under 1 million
+filtered_data <- subset(ames, `Sale Price` <= 1000000 & `Acres`< 7)
+
+# Scatterplot of Sale Price vs Acres
+ggplot(filtered_data, aes(x = Acres, y = `Sale Price`)) +
+  geom_point(alpha = 0.6, color = "steelblue") +
+  labs(
+    title = "Scatterplot of Sale Price vs. Acres Filtered",
+    x = "Acres",
+    y = "Sale Price"
+  )
+```
+
+![](README_files/figure-gfm/unnamed-chunk-7-1.png)<!-- --> The
+scatterplot shows that most houses are on smaller lots under 1 acre, and
+their sale prices vary widely. Houses on larger lots (2–6 acres) don’t
+always have higher prices, which is a bit unusual. This suggests that
+lot size alone doesn’t strongly determine the sale price, and other
+factors like location or house features play a big role.
