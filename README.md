@@ -147,3 +147,5 @@ area is it located. Their will not range for that too.
 ======= \## Step 2. The main variable for this report is `Sale Price`,
 we will be focusing on exploring relations between it and other
 variables in the dataset.
+
+Vaishnavi
