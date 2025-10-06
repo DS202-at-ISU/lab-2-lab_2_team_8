@@ -28,11 +28,10 @@ library(classdata)
  
  unique(ames$`Multi Sale`)
 ```
-<<<<<<< HEAD
- 1. What variables: Parcel ID, Address, Style, Occupancy, Sale Date, Sale Price, Multi Sale, YearBuilt, Acres, TotalLivingArea (sf), Bedrooms, FinshedBsmtArea (sf), LotArea(sf), AC, FirePlace, Neighborhood. The variables are of type character, numerical, and date.
- 
-=======
- 1. What variables: Parcel ID, Address, Style, Occupancy, Sale Date, Sale Price, Multi Sale, YearBuilt, Acres, TotalLivingArea (sf), Bedrooms, FinshedBsmtArea (sf), LotArea(sf), AC, FirePlace, Neighborhood. The variables are of type character, numerical, and date. What do these variables mean: Sale date is the date of the sale of the property, expected data range 2017-2022. Sale price is the amount of money in American dollars that the property was sold for, expected range 0, 20 million. Multi Sale shows if the sale consisted of more than one property, Y showing that it was, NA otherwise, expected possible values, NA and Y. YearBuilt is the year that the house or building was built, expected range, 0-2022.
+## Step 1.
+
+What variables: Parcel ID, Address, Style, Occupancy, Sale Date, Sale Price, Multi Sale, YearBuilt, Acres, TotalLivingArea (sf), Bedrooms, FinshedBsmtArea (sf), LotArea(sf), AC, FirePlace, Neighborhood. The variables are of type character, numerical, and date. What do these variables mean: Sale date is the date of the sale of the property, expected data range 2017-2022. Sale price is the amount of money in American dollars that the property was sold for, expected range 0, 20 million. Multi Sale shows if the sale consisted of more than one property, Y showing that it was, NA otherwise, expected possible values, NA and Y. YearBuilt is the year that the house or building was built, expected range, 0-2022.
+
 Parcel ID: A unique ID used to identify a property to authorities, this could be any range of unique values.
 Address: This represents the address of the property. This is expected to not be empty, but it could be any address.
 Style: This marks the style of the house / property, the range for this dataset is: 1 Story Frame, 2 Story Frame, 1 1/2 Story Frame, Split Level Frame, Split Foyer Frame, (Other), or NA.
@@ -45,11 +44,178 @@ LotArea(sf): It is a Square feet area of a house for a particular house sale hom
 AC: It says whether a house has AC or not. There will be no range because it is yes or no thing.
 Fireplace: It will say that whether they has a fireplace or not in a house. I think their will no range because it is yes or no thing.
 Neibhorhood: It says in which area is it located. Their will not range for that too.
- 
-=======
+
 ## Step 2.
+
+As a team, we found the following.
 The main variable for this report is `Sale Price`, we will be focusing on exploring relations between it and other variables in the dataset.
 
+<<<<<<< HEAD
  Vaishnavi
+=======
+## Step 3
+
+As a team, we found the following.
+Range of Sales Price:
+
+```{r}
+min(ames$`Sale Price`)
+max(ames$`Sale Price`)
+
+
+range(ames$`Sale Price`)
+
+
+diff(range(ames$`Sale Price`))
+```
+
+The range of home sale prices in the Ames dataset spans from the 0 sale price to the 20500000, showing the spread of values across the housing market.
+ 
+```{r}
+library(tidyverse)
+
+ggplot(ames, aes(x = `Sale Price`)) +
+  geom_bar(fill = "steelblue", color = "Black") +
+  labs(
+    title = "Distribution of Sale Prices",
+    x = "Sale Price",
+    y = "Count"
+  )
+```
+ 
+>>>>>>> 83f392391520f66695a36792c904f670cb272251
+ 
+ The histogram of Sale Price shows a right-skewed distribution where most homes sell at lower to mid-range prices, but a few extremely high-priced outliers in the millions stretch the scale and make the main pattern harder to see.
  
  
+## Step 4
+
+ Norah's work: 
+ One variable that could be related to the main variable, Sale Price, is Year Built. The range of this variable is 0-2022. It's distribution is left skewed, roughly centered around the late 1900s, approximately the 1990s. 
+```{r}
+summary(ames$YearBuilt)
+ggplot(ames, aes(x=YearBuilt)) + geom_histogram(binwidth = 10)
+
+ggplot(ames, aes(y = `Sale Price`, x = `YearBuilt`)) +
+  geom_point(fill = "steelblue", color = "Black") +
+  labs(
+    title = "Distribution of Sale Prices",
+    x = "Sale Price",
+    y = "Year Built"
+  )
+#This is clearly too compressed, we will remove the year values of 0.
+# and also sale prices over 1 million since there are only a few and we need to see the overall pattern.
+
+ames %>% filter(YearBuilt !=0, `Sale Price` <= 1000000) %>%
+  ggplot(aes(y = `Sale Price`, x = YearBuilt)) +
+  geom_point(fill = "steelblue", color = "Black") +
+  labs(
+    title = "Distribution of Sale Prices",
+    x = "Sale Price",
+    y = "Year Built"
+  )
+```
+This plot shows a weak positive correlation between year built and sale price. This variable does not seem to explain any of the oddities from part 3. The low value outlier appears to be a mistake, with both values being 0 (the house was definitely not built in year 0.) The high value outliers are only high in the year built value, so these are not the same as the high outliers seen in the histogram of the distribution of sale prices. The high values in the sale price histogram are likely the values referred to in the warning where it says that some values were excluded for being outside of the scaling range. 
+
+End of Norah's work.
+
+
+Prudvik's work:
+
+one variable that we will compare main variable is acers. area of the land with its sales price.
+```{r}
+range(ames$Acres, na.rm = TRUE)
+```
+
+The range of lot size in acres spans from 0.000 to 12.012, showing that most properties are very small while a few extend to much larger acreages.
+
+
+
+
+```{r}
+
+library(tidyverse)
+
+ggplot(ames, aes(x = Acres)) +
+  geom_histogram(binwidth = 0.1, fill = "steelblue", color = "black") +
+  labs(title = "Distribution of Lot Size (Acres)",
+       x = "Lot Size (Acres)", y = "Count")
+
+
+
+```
+The distribution of lot size is highly right-skewed, with the majority of homes built on very small lots under 1 acre. A few properties extend up to 12 acres, but these are rare outliers that stretch the scale and make the main cluster of smaller lots appear compressed. This suggests that while most homes in the dataset are located on relatively compact residential lots, a handful of unusually large properties stand out as exceptions.
+
+Since extreme outliers in both Sale Price and lot size (Acres) were distorting the analysis, we applied filters to remove homes priced above $1,000,000 and properties larger than 7 acres. This allowed us to focus on the majority of typical houses in the dataset and better observe the true relationship between Sale Price and lot size without the influence of unusual extreme cases
+
+```{r}
+library(ggplot2)
+
+# Filter sales price under 1 million
+filtered_data <- subset(ames, `Sale Price` <= 1000000 & `Acres`< 7)
+
+# Scatterplot of Sale Price vs Acres
+ggplot(filtered_data, aes(x = Acres, y = `Sale Price`)) +
+  geom_point(alpha = 0.6, color = "steelblue") +
+  labs(
+    title = "Scatterplot of Sale Price vs. Acres Filtered",
+    x = "Acres",
+    y = "Sale Price"
+  )
+
+```
+The scatterplot shows that most houses are on smaller lots under 1 acre, and their sale prices vary widely. Houses on larger lots (2–6 acres) don’t always have higher prices, which is a bit unusual. This suggests that lot size alone doesn’t strongly determine the sale price, and other factors like location or house features play a big role.
+
+#### Harrison's work
+
+I am going to explore the `Occupancy` variable. This is a categorical variable, as there are only a certain number of fixed discrete variables it can be.
+
+```{r}
+library(ggplot2)
+library(dplyr)
+clean <- ames %>%
+  filter(`Sale Price` > 0)
+ggplot(clean, aes(x = Occupancy, y = `Sale Price`, fill = Occupancy)) +
+  geom_boxplot() + 
+  labs(title = "Distribution of Sale Price by Occupancy Type",
+       x = "Occupancy",
+       y = "Sale Price") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+clean <- ames %>%
+  filter(`Sale Price` < 1e7)
+ggplot(clean, aes(x = Occupancy, y = `Sale Price`, fill = Occupancy)) +
+  geom_boxplot() + 
+  labs(title = "Distribution of Sale Price by Occupancy Type",
+       x = "Occupancy",
+       y = "Sale Price") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+range(ames$`Sale Price`, na.rm = TRUE)
+```
+We see here that there are a few oddites:
+
+1. There are a lot of `Sale Price` that are equal to 0.
+
+2. There is an outlier at 20.5 million dollars on a condo.
+
+Even in the filtered out plot, there is still pretty major outliers in the NA category. These are most likely to do with plots of land to be developed, as some of these would be much more expensive than regular housing.
+
+We do still see a good amount of outliers in Condos and Single-Family as well.
+
+```{r}
+library(dplyr)
+
+outlier <- ames %>%
+  filter(`Sale Price` == max(`Sale Price`, na.rm = TRUE)) %>%
+  select(`Parcel ID`, Address, Occupancy, `Sale Price`)
+
+outlier
+```
+Here we see that the 416 BILLY SUNDAY RD Condos are ALL listed for the MAX price, this is probably some sort of error, and should most likely be filtered out.
+
+Two-Family Duplex and Townhouse seem to be the only ones without extreme outliers.
+
+We can conclude that properties like condos and single-family are highly variable in price.
