@@ -104,15 +104,7 @@ library(classdata)
 
     ## [1] NA  "Y"
 
-<<<<<<< HEAD
-\<\<\<\<\<\<\< HEAD \## Step 1. 1. As a team, we found the following.
-What variables: Parcel ID, Address, Style, Occupancy, Sale Date, Sale
-Price, Multi Sale, YearBuilt, Acres, TotalLivingArea (sf), Bedrooms,
-FinshedBsmtArea (sf), LotArea(sf), AC, FirePlace, Neighborhood. The
-variables are of type character, numerical, and date.
-=======
-## Step 1
->>>>>>> 98803e4 (My part 4.)
+## Step 1.
 
 What variables: Parcel ID, Address, Style, Occupancy, Sale Date, Sale
 Price, Multi Sale, YearBuilt, Acres, TotalLivingArea (sf), Bedrooms,
@@ -124,40 +116,36 @@ American dollars that the property was sold for, expected range 0, 20
 million. Multi Sale shows if the sale consisted of more than one
 property, Y showing that it was, NA otherwise, expected possible values,
 NA and Y. YearBuilt is the year that the house or building was built,
-expected range, 0-2022. Parcel ID: A unique ID used to identify a
-property to authorities, this could be any range of unique values.
-Address: This represents the address of the property. This is expected
-to not be empty, but it could be any address. Style: This marks the
-style of the house / property, the range for this dataset is: 1 Story
-Frame, 2 Story Frame, 1 1/2 Story Frame, Split Level Frame, Split Foyer
-Frame, (Other), or NA. Occupancy: This marks what type of occupancy it
-is, the ranges we expect for this dataset are: Condominium,
-Single-Family / Owner Occupied, Townhouse, Two-Family Conversion,
-Two-Family Duplex, or NA. Acres: Represents the size of the lot on which
-the residence is located. Values range from 0 to 12. TotalLivingArea:
-Indicates the total interior living space of the residence. Values range
-from 0 to 6,000 square feet. Bedrooms: The number of bedrooms in the
-residence. This ranges from 0 to 10, with some missing values.
-FinishedBasementArea: Refers to the finished area of the basement in
-square feet. Values range from 10 to 6,494 square feet, with some
-missing values. LotArea(sf): It is a Square feet area of a house for a
-particular house sale home.it is measured by Square feet and the range
-will be from 1000 sf. AC: It says whether a house has AC or not. There
-will be no range because it is yes or no thing. Fireplace: It will say
-that whether they has a fireplace or not in a house. I think their will
-no range because it is yes or no thing. Neibhorhood: It says in which
-area is it located. Their will not range for that too.
+expected range, 0-2022.
+
+Parcel ID: A unique ID used to identify a property to authorities, this
+could be any range of unique values. Address: This represents the
+address of the property. This is expected to not be empty, but it could
+be any address. Style: This marks the style of the house / property, the
+range for this dataset is: 1 Story Frame, 2 Story Frame, 1 1/2 Story
+Frame, Split Level Frame, Split Foyer Frame, (Other), or NA. Occupancy:
+This marks what type of occupancy it is, the ranges we expect for this
+dataset are: Condominium, Single-Family / Owner Occupied, Townhouse,
+Two-Family Conversion, Two-Family Duplex, or NA. Acres: Represents the
+size of the lot on which the residence is located. Values range from 0
+to 12. TotalLivingArea: Indicates the total interior living space of the
+residence. Values range from 0 to 6,000 square feet. Bedrooms: The
+number of bedrooms in the residence. This ranges from 0 to 10, with some
+missing values. FinishedBasementArea: Refers to the finished area of the
+basement in square feet. Values range from 10 to 6,494 square feet, with
+some missing values. LotArea(sf): It is a Square feet area of a house
+for a particular house sale home.it is measured by Square feet and the
+range will be from 1000 sf. AC: It says whether a house has AC or not.
+There will be no range because it is yes or no thing. Fireplace: It will
+say that whether they has a fireplace or not in a house. I think their
+will no range because it is yes or no thing. Neibhorhood: It says in
+which area is it located. Their will not range for that too.
 
 ## Step 2.
 
-<<<<<<< HEAD
 As a team, we found the following. The main variable for this report is
 `Sale Price`, we will be focusing on exploring relations between it and
 other variables in the dataset.
-=======
-The main variable for this report is `Sale Price`, we will be focusing
-on exploring relations between it and other variables in the dataset.
->>>>>>> 98803e4 (My part 4.)
 
 ## Step 3
 
@@ -225,7 +213,6 @@ harder to see.
 
 ## Step 4
 
-<<<<<<< HEAD
 Norah’s work: One variable that could be related to the main variable,
 Sale Price, is Year Built. The range of this variable is 0-2022. It’s
 distribution is left skewed, roughly centered around the late 1900s,
@@ -354,7 +341,7 @@ their sale prices vary widely. Houses on larger lots (2–6 acres) don’t
 always have higher prices, which is a bit unusual. This suggests that
 lot size alone doesn’t strongly determine the sale price, and other
 factors like location or house features play a big role.
-=======
+
 #### Harrison’s work
 
 I am going to explore the `Occupancy` variable. This is a categorical
@@ -375,7 +362,7 @@ ggplot(clean, aes(x = Occupancy, y = `Sale Price`, fill = Occupancy)) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
 
 ``` r
 clean <- ames %>%
@@ -389,7 +376,7 @@ ggplot(clean, aes(x = Occupancy, y = `Sale Price`, fill = Occupancy)) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-4-2.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-8-2.png)<!-- -->
 
 ``` r
 range(ames$`Sale Price`, na.rm = TRUE)
@@ -439,4 +426,9 @@ outlier
 Here we see that the 416 BILLY SUNDAY RD Condos are ALL listed for the
 MAX price, this is probably some sort of error, and should most likely
 be filtered out.
->>>>>>> 98803e4 (My part 4.)
+
+Two-Family Duplex and Townhouse seem to be the only ones without extreme
+outliers.
+
+We can conclude that properties like condos and single-family are highly
+variable in price.
