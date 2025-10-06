@@ -147,9 +147,7 @@ As a team, we found the following. The main variable for this report is
 `Sale Price`, we will be focusing on exploring relations between it and
 other variables in the dataset.
 
-# \<\<\<\<\<\<\< HEAD
-
-## Step 3
+======= \## Step 3
 
 As a team, we found the following. Range of Sales Price:
 
@@ -207,8 +205,6 @@ ggplot(ames, aes(x = `Sale Price`)) +
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
-
-> > > > > > > 83f392391520f66695a36792c904f670cb272251
 
 The histogram of Sale Price shows a right-skewed distribution where most
 homes sell at lower to mid-range prices, but a few extremely high-priced
@@ -436,3 +432,60 @@ outliers.
 
 We can conclude that properties like condos and single-family are highly
 variable in price.
+
+#### Vaishnavi’s work:
+
+The variable that will be related to the main variable is Bedrooms. The
+range of the variable is 1 to 8. It is relable as the number of bedrooms
+contains the sale Price will increase.
+
+``` r
+library(tidyverse)
+ames$Bedrooms <- factor(ames$Bedrooms)
+summary(ames$Bedrooms)
+```
+
+    ##    0    1    2    3    4    5    6    7    8   10 NA's 
+    ##   39  186 1116 2451 2015  549  108   13   10    1  447
+
+``` r
+ames  %>% 
+  ggplot(aes(x = Bedrooms)) +
+  geom_bar()
+```
+
+![](README_files/figure-gfm/unnamed-chunk-10-1.png)<!-- --> The
+Relationship between the main variable and the bedrooms is the price
+sale of the house because the numnber of bedrooms increases and the
+price sale of the house price will increase too.
+
+``` r
+library(ggplot2)
+
+ggplot(data = ames, 
+       aes(x = factor(Bedrooms), 
+           y = `Sale Price`)) + 
+  geom_boxplot() +
+  labs(title = "Actual Plot Bedroom vs Sale Price)")
+```
+
+![](README_files/figure-gfm/unnamed-chunk-11-1.png)<!-- --> In the above
+garph, I can observe that their 1 Bedroom houses are have the highest
+Sale Price. because the house with one Bedroom can sale easily and below
+is the Number of Bedroom with equally distributed house sale Prices.
+
+``` r
+library(ggplot2)
+
+ames <- mutate(ames, Bedrooms_Zeroed = 0)
+
+ggplot(data = ames, 
+       aes(x = factor(Bedrooms_Zeroed), 
+           y = `Sale Price`)) + 
+  geom_boxplot() +
+  labs(title = "Plot after Literal Zeros (Loss of Information)")
+```
+
+![](README_files/figure-gfm/unnamed-chunk-12-1.png)<!-- --> Finally, In
+my overrall pattern, I can say that one bedroom are saling price is high
+than the 8 bedrooms house.
