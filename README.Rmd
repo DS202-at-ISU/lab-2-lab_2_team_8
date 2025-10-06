@@ -51,7 +51,6 @@ As a team, we found the following.
 The main variable for this report is `Sale Price`, we will be focusing on exploring relations between it and other variables in the dataset.
 
 <<<<<<< HEAD
- Vaishnavi
 =======
 ## Step 3
 

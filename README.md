@@ -118,13 +118,6 @@ property, Y showing that it was, NA otherwise, expected possible values,
 NA and Y. YearBuilt is the year that the house or building was built,
 expected range, 0-2022.
 
-<<<<<<< HEAD
-======= \## Step 2. The main variable for this report is `Sale Price`,
-we will be focusing on exploring relations between it and other
-variables in the dataset.
-
-Vaishnavi
-=======
 Parcel ID: A unique ID used to identify a property to authorities, this
 could be any range of unique values. Address: This represents the
 address of the property. This is expected to not be empty, but it could
@@ -153,6 +146,8 @@ which area is it located. Their will not range for that too.
 As a team, we found the following. The main variable for this report is
 `Sale Price`, we will be focusing on exploring relations between it and
 other variables in the dataset.
+
+# \<\<\<\<\<\<\< HEAD
 
 ## Step 3
 
@@ -192,7 +187,7 @@ library(tidyverse)
 
     ## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
     ## ✔ dplyr     1.1.4     ✔ readr     2.1.5
-    ## ✔ forcats   1.0.1     ✔ stringr   1.5.2
+    ## ✔ forcats   1.0.1     ✔ stringr   1.5.1
     ## ✔ ggplot2   4.0.0     ✔ tibble    3.3.0
     ## ✔ lubridate 1.9.4     ✔ tidyr     1.3.1
     ## ✔ purrr     1.1.0     
@@ -212,6 +207,8 @@ ggplot(ames, aes(x = `Sale Price`)) +
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+
+> > > > > > > 83f392391520f66695a36792c904f670cb272251
 
 The histogram of Sale Price shows a right-skewed distribution where most
 homes sell at lower to mid-range prices, but a few extremely high-priced
@@ -439,4 +436,3 @@ outliers.
 
 We can conclude that properties like condos and single-family are highly
 variable in price.
->>>>>>> 83f392391520f66695a36792c904f670cb272251
